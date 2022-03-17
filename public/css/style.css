@@ -1,0 +1,46 @@
+.card-container{
+  /* border: 1px solid red; */
+    display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  
+  
+
+}
+
+.card-container .card{
+    /* border: 1px solid red; */
+    margin: 1rem;
+}
+
+.buttons{
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
+}
+
+.buttons .btn{
+  /* border: 1px solid blue; */
+  margin: 0.3rem;
+  width: 5rem;
+}
+
+.user-info{
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+span{
+  font-weight: bold;
+}
+
+.rounded{
+  width: 150px;
+  /* height: 100px; */
+}
+
+.old{
+  margin-top: 1rem;
+}
