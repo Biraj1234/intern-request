@@ -17,6 +17,7 @@ class UserController extends Controller
     public function __construct(User $user)
     {
         $this->model = $user;
+        $this->middleware('auth')->only('index');
     }
     public function index()
     {
@@ -33,8 +34,6 @@ class UserController extends Controller
 
     public function store(UserStoreRequest $request)
     {
-        // dd($request->all());
-
         $file = $request->file('profile');
         $fileName = time() . '.' . $file->getClientOriginalName();
         $file->move(public_path('uploads/users'), $fileName);

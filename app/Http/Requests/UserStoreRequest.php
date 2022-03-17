@@ -26,6 +26,7 @@ class UserStoreRequest extends FormRequest
             'bio' => 'required',
             'password' => 'required|min:6',
             'cpassword' => 'required|same:password',
+            'profile' => 'required'
 
         ];
     }
@@ -33,5 +34,6 @@ class UserStoreRequest extends FormRequest
     {
         return ['cpassword.required' => "The confirm password field is required."];
         return ['cpassword.same' => "Your password and confirm password didn't match."];
+        return ['profile.required' => "Please choose your profile picture."];
     }
 }

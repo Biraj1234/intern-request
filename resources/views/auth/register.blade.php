@@ -94,7 +94,7 @@
 
                                 <div class="col-md-6">
                                     <textarea name="bio" id="bio" cols="30" rows="10" class="form-control @error('bio') is-invalid @enderror"
-                                        value="{{ old('bio') }}" autocomplete="bio"></textarea>
+                                        autocomplete="bio">{{ old('bio') }}</textarea>
 
                                     @error('bio')
                                         <span class="invalid-feedback" role="alert">

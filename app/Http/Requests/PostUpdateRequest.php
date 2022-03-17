@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PostStoreRequest extends FormRequest
+class PostUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,12 +27,6 @@ class PostStoreRequest extends FormRequest
             'title' => 'required|regex:/^[a-zA-Z ]+$/u',
             'description' => 'required',
             'status' => 'required',
-            'image_file' => 'required'
         ];
-    }
-    public function messages()
-    {
-
-        return ['image_file.required' => "Please choose a picture."];
     }
 }

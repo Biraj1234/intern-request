@@ -22,5 +22,5 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('user', 'UserController')->middleware('auth');
+Route::resource('user', 'UserController');
 Route::resource('post', 'PostController')->middleware('auth');

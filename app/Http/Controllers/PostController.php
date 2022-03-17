@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostStoreRequest;
+use App\Http\Requests\PostUpdateRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -78,7 +79,7 @@ class PostController extends Controller
     }
 
 
-    public function update(PostStoreRequest $request, $id)
+    public function update(PostUpdateRequest $request, $id)
     {
 
         $data['row'] = $this->model->find($id);

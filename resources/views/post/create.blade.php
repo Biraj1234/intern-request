@@ -40,7 +40,7 @@
                                 <div class="col-md-6">
                                     <textarea name="description" id="description" cols="30" rows="10"
                                         class="form-control @error('description') is-invalid @enderror"
-                                        value="{{ old('description') }}" autocomplete="description"></textarea>
+                                        autocomplete="description">{{ old('description') }}</textarea>
 
                                     @error('description')
                                         <span class="invalid-feedback" role="alert">
