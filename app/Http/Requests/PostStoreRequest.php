@@ -24,7 +24,7 @@ class PostStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|regex:/^[a-zA-Z ]+$/u',
+            'title' => 'required',
             'description' => 'required',
             'status' => 'required',
             'image_file' => 'required'
