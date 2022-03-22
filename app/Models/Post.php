@@ -10,10 +10,10 @@ class Post extends Model
     public $timestamps = false;
 
     protected $table = 'posts';
-    protected $fillable = ["title", "image", "description", "status", "user_id"];
+    protected $fillable = ["title", "image", "description", "status", "position", "user_id"];
 
     public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

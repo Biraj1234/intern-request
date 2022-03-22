@@ -24,9 +24,12 @@ class PostUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|regex:/^[a-zA-Z ]+$/u',
+            'title' => 'required',
             'description' => 'required',
             'status' => 'required',
+            // 'position' => 'required|unique:posts',
+
+
         ];
     }
 }
