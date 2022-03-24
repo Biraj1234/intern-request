@@ -12,17 +12,28 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
 
-class UserController extends Controller
+class UserController extends BackendBaseController
 {
-    public function __construct(User $user)
+    protected $panel = 'User';  //for section/moudule
+    protected $folder = 'backend.user.'; //for view file
+    protected $base_route = 'backend.user.'; //for route method
+    protected $title;
+    protected $model = 'User';
+
+    function __construct()
     {
-        $this->model = $user;
-        $this->middleware('auth')->only('index');
+        $this->model = new User();
     }
+
+
+
     public function index()
     {
-        $data['count'] = Post::where('user_id', Auth::user()->id)->count();
-        return view('backend.user.index', $data);
+
+
+        $data['rows'] = User::all();
+
+        return view($this->__loadDataToView($this->folder . 'index'), compact('data'));
     }
 
     public function store(UserStoreRequest $request)

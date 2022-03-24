@@ -1,57 +1,78 @@
-@extends('layouts.app')
-
+@extends('backend.layouts.master')
+@section('title', $title)
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header d-flex">
-                        <div class="p-2 flex-grow-1 bd-highlight">Profile</div>
+    <section class="content">
 
 
-                    </div>
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
 
-                    <div class="card-body">
+                <h3 class="card-title">{{ $title }} {{ $panel }}</h3>
 
-                        <div class="card-container">
-                            <div class="user-info">
-
-                                <div class="details">
-                                    <span>Name:</span> {{ Auth::user()->name }} <br>
-                                    <span>Email:</span> {{ Auth::user()->email }} <br>
-                                    <span> Bio:</span> {{ Auth::user()->bio }} <br>
-                                    <span> Posts:</span> {{ $count }} <br>
-
-                                    <div class="buttons">
-                                        <a href="{{ route('user.edit', Auth::user()->id) }}"
-                                            class="btn btn-warning">Edit</a>
-                                        <form action="{{ route('user.destroy', Auth::user()->id) }}" method="POST">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                            <button class="btn btn-danger"
-                                                onclick="return confirm('Are you sure you want to delete your account?? Everyting will be deleted posted by you.')">Delete</button>
-                                        </form>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="image">
-                                    <img src="{{ asset('uploads/users/' . Auth::user()->image) }}" alt="" height="200px">
-                                </div>
-
-
-                            </div>
-
-                        </div>
-
-
-
-
-
-                    </div>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                        title="Collapse">
+                        <i class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip"
+                        title="Remove">
+                        <i class="fas fa-times"></i></button>
                 </div>
             </div>
+            <div class="card-body">
+
+                <div class="table-responsive" id="printMe">
+                    @include('backend.includes.flashmessage')
+
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Name</th>
+                                <th>Profile Picture</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            @foreach ($data['rows'] as $index => $data)
+                                <tr>
+
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>
+                                        <a href="{{ route($base_route . 'show', $data->id) }}">
+                                            {{ $data->name }}
+                                        </a>
+                                    </td>
+
+                                    <td>
+                                        <img src="{{ asset('uploads/users/' . $data->image) }}" height="100px"
+                                            width="100px" alt="">
+
+
+                                    </td>
+
+
+
+                                </tr>
+                            @endforeach
+                        </tbody>
+
+                    </table>
+                </div>
+
+
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+                Footer
+            </div>
+            <!-- /.card-footer-->
         </div>
-    </div>
+        <!-- /.card -->
+
+    </section>
+@endsection
+
 @endsection

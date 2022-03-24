@@ -19,6 +19,7 @@
                     <h4 class="tm-margin-b-20 tm-gold-text">{{ $post->title }}</h4>
                     <p class="tm-margin-b-20">{{ $post->description }}</p>
                     <p class="tm-margin-b-20">Posted By:<b>{{ $post->users->name }}</b></p>
+                    <p class="tm-margin-b-20">Category:<b>{{ $post->categories->title }}</b></p>
                     <a href="{{ route('post.detail', $post->id) }}" class="tm-btn text-uppercase">Detail</a>
                 </div>
 
@@ -63,12 +64,13 @@
                             </h3>
                             <nav>
                                 <ul class="nav">
-                                    <li><a href="#" class="tm-text-link">Tincidunt non faucibus placerat</a>
-                                    </li>
-                                    <li><a href="#" class="tm-text-link">Vestibulum tempor ac lectus</a></li>
-                                    <li><a href="#" class="tm-text-link">Fusce non turpis euismod</a></li>
-                                    <li><a href="#" class="tm-text-link">Nam in augue consectetur</a></li>
-                                    <li><a href="#" class="tm-text-link">Text Link Color #006699</a></li>
+                                    @forelse($allCategories as $category)
+                                        <li><a href="#" class="tm-text-link">{{ $category->title }}</a>
+                                        </li>
+                                    @empty
+                                        <li>No categories added</a>
+                                        </li>
+                                    @endforelse
                                 </ul>
                             </nav>
                         </div> <!-- col -->

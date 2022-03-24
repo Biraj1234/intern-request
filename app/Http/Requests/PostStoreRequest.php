@@ -28,7 +28,8 @@ class PostStoreRequest extends FormRequest
             'description' => 'required',
             'position' => 'required|unique:posts',
             'status' => 'required',
-            'image_file' => 'required'
+            'image_file' => 'required',
+            'position' => 'required|unique:posts'
         ];
     }
     public function messages()

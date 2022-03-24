@@ -1,70 +1,100 @@
-@extends('layouts.app')
-
+@extends('backend.layouts.master')
+@section('title', $title)
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header d-flex">
-                        <div class="p-2 flex-grow-1 bd-highlight">Your Posts</div>
-                        <div class="p-2 bd-highlight"><a href="{{ route('post.create') }}" class="btn btn-success">Add</a>
-                        </div>
-
-                    </div>
-
-                    <div class="card-body">
-                        @if (Session::has('success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                {{ Session::get('success') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
-                            </div>
-                        @endif
-                        @if (Session::has('error'))
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                {{ Session::get('error') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
-                            </div>
-                        @endif
+    <section class="content">
 
 
-                        <div class="card-container">
-                            @forelse ($posts as $post)
-                                <div class="card" style="width: 18rem;">
-                                    <img src="{{ asset('uploads/posts/' . $post->image) }}" class="card-img-top"
-                                        alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ $post->title }}</h5>
-                                        <p class="card-text">{{ $post->description }}</p>
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">{{ $title }} {{ $panel }}
+                    <a class="btn btn-primary" href="{{ route($base_route . 'create') }}">
+                        <i class="fas fa-plus"></i></button>
+                        Add
+                    </a>
 
-                                    </div>
+                </h3>
 
-                                    <div class="buttons">
-                                        <a href="{{ route('post.edit', $post->id) }}" class="btn btn-primary">Edit</a>
-
-
-                                        <form action="{{ route('post.destroy', $post->id) }}" method="POST">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                            <button class="btn btn-danger"
-                                                onclick="return confirm('Do you want to delete this??')">Delete</button>
-                                        </form>
-                                    </div>
-
-                                </div>
-                            @empty
-                                <p>No post created</p>
-                            @endforelse
-                        </div>
-
-
-
-
-
-                    </div>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                        title="Collapse">
+                        <i class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip"
+                        title="Remove">
+                        <i class="fas fa-times"></i></button>
                 </div>
             </div>
+            <div class="card-body">
+
+                <div class="table-responsive">
+                    @include('backend.includes.flashmessage')
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Title</th>
+                                <th>Category</th>
+
+                                <th>Created By</th>
+                                <th>Status</th>
+                                <th>Action</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach ($data['posts'] as $index => $data)
+                                <tr>
+
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ $data->title }}</td>
+                                    <td>{{ $data->categories->title }}</td>
+                                    <td>{{ $data->users->name }}</td>
+
+                                    <td>
+                                        @if ($data->status == 1)
+                                            <p class="text text-success">Active</p>
+                                        @else
+                                            <p class="text text-danger">Inactive</p>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-success"
+                                            href="{{ route($base_route . 'show', $data->id) }}">View</a>
+                                        <a class="btn btn-primary"
+                                            href="{{ route($base_route . 'edit', $data->id) }}">Edit</a>
+
+
+                                        {!! Form::open(['route' => [$base_route . 'destroy', $data->id], 'method' => 'post', 'class' => 'd-inline']) !!}
+
+                                        {!! Form::hidden('_method', 'DELETE') !!}
+
+                                        {!! Form::submit('Delete', ['class' => 'btn btn-danger', 'onclick' => "return confirm('Are you sure you want to delete this item?');"]) !!}
+
+                                        {!! Form::close() !!}
+
+
+
+
+                                    </td>
+
+                                </tr>
+                            @endforeach
+                        </tbody>
+
+                    </table>
+                </div>
+
+
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+                Footer
+            </div>
+            <!-- /.card-footer-->
         </div>
-    </div>
+        <!-- /.card -->
+
+    </section>
 @endsection

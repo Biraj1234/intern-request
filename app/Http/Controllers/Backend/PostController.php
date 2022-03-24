@@ -5,28 +5,38 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostStoreRequest;
 use App\Http\Requests\PostUpdateRequest;
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
-class PostController extends Controller
+class PostController extends BackendBaseController
 {
-    public function __construct(Post $post)
+    protected $panel = 'Post';  //for section/moudule
+    protected $folder = 'backend.post.'; //for view file
+    protected $base_route = 'backend.post.'; //for route method
+    protected $title;
+    protected $model = 'Post';
+
+    function __construct()
     {
-        $this->model = $post;
+        $this->model = new Post();
     }
 
 
     public function index()
     {
         $data['posts'] = Post::where('user_id', Auth::user()->id)->get();
-
-        return view('backend.post.index', $data);
+        return view($this->__loadDataToView($this->folder . 'index'), compact('data'));
     }
 
     public function create()
     {
-        return view('backend.post.create');
+        $this->title = 'Create';
+
+        $data['categories'] = Category::pluck('title', 'id');
+
+        return view($this->__loadDataToView($this->folder . 'create'), $data);
     }
 
 
@@ -48,7 +58,7 @@ class PostController extends Controller
         } else {
             $request->session()->flash('error', 'Error in creating post');
         }
-        return redirect()->route('post.index');
+        return redirect()->route($this->base_route . 'index');
     }
 
 
@@ -60,9 +70,10 @@ class PostController extends Controller
 
     public function edit($id)
     {
+        $this->title = 'Create';
         $data['row'] = $this->model->find($id);
 
-        return view('backend.post.edit', compact('data'));
+        return view($this->__loadDataToView($this->folder . 'edit'), compact('data'));
     }
 
 
@@ -108,6 +119,6 @@ class PostController extends Controller
         } else {
             request()->session()->flash('error', 'Error in deleting post');
         }
-        return redirect()->route('post.index');
+        return view($this->__loadDataToView($this->folder . 'index'));
     }
 }

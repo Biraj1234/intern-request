@@ -1,18 +1,21 @@
 <?php
 
-
+use App\Http\Controllers\Backend\DashboardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('/home');
+Route::get('/home', [DashboardController::class, 'index'])->name('home');
 
-Route::group(['namespace' => 'Backend'], function () {
-    Route::resource('user', 'UserController');
-    Route::resource('post', 'PostController')->middleware('auth');
+Route::prefix('backend/')->name('backend.')->group(function () {
+
+    Route::resource('user', 'Backend\UserController');
+    Route::resource('post', 'Backend\PostController');
+    Route::resource('category', 'Backend\CategoryController');
 });
+
 
 
 //For frontend

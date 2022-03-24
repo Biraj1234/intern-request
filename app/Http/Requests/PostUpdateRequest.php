@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PostUpdateRequest extends FormRequest
@@ -23,11 +24,13 @@ class PostUpdateRequest extends FormRequest
      */
     public function rules()
     {
+        // dd(request()->post);
+
         return [
             'title' => 'required',
             'description' => 'required',
             'status' => 'required',
-            // 'position' => 'required|unique:posts',
+            'position' => 'required|unique:posts,position,' . request()->post,
 
 
         ];

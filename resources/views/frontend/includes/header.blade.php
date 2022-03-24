@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/templatemo-style.css') }}"> <!-- Templatemo style -->
 
 
+
 </head>
 
 <body>
@@ -32,20 +33,19 @@
                         &#9776;
                     </button>
 
+
+
                     <div class="collapse navbar-toggleable-sm" id="tmNavbar">
                         <ul class="nav navbar-nav">
                             <li class="nav-item active">
                                 <a href="index.html" class="nav-link">Home</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="about.html" class="nav-link">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="blog.html" class="nav-link">Blog</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="contact.html" class="nav-link">Contact</a>
-                            </li>
+                            @foreach ($categories as $category)
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">{{ $category->title }}</a>
+                                </li>
+                            @endforeach
+
                         </ul>
                     </div>
 

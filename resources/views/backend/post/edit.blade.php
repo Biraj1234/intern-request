@@ -1,131 +1,48 @@
-@extends('layouts.app')
-
+@extends('backend.layouts.master')
+@section('title', $title)
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Edit') }}</div>
+    <section class="content">
 
-                    <div class="card-body">
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">{{ $title }} {{ $panel }}
+                    <a class="btn btn-success" href="{{ route($base_route . 'index') }}">
+                        <i class="fas fa-list"></i>
+                        List
+                    </a>
+                </h3>
 
-                        <form action="{{ route('post.update', $data['row']->id) }}" method="POST"
-                            enctype="multipart/form-data">
-                            {{ method_field('PUT') }}
-                            @csrf
-                            <div class="row mb-3">
-                                <label for="title" class="col-md-4 col-form-label text-md-end">{{ __('Title') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="title" type="title" class="form-control @error('title') is-invalid @enderror"
-                                        name="title" value="{{ $data['row']->title }}" autocomplete="title" autofocus>
-
-                                    @error('title')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-
-
-                            <div class="row mb-3">
-                                <label for="description" class="col-md-4 col-form-label text-md-end">Description</label>
-
-                                <div class="col-md-6">
-                                    <input id="description" type="text"
-                                        class="form-control @error('description') is-invalid @enderror" name="description"
-                                        value="{{ $data['row']->description }}" autocomplete="description">
-
-                                    @error('description')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="position" class="col-md-4 col-form-label text-md-end">Position</label>
-
-                                <div class="col-md-6">
-                                    <input id="position" type="number"
-                                        class="form-control @error('position') is-invalid @enderror" name="position"
-                                        value="{{ $data['row']->position }}" autocomplete="position" autofocus>
-
-                                    @error('position')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="age" class="col-md-4 col-form-label text-md-end">Status</label>
-
-                                <div class="col-md-6">
-
-                                    @if ($data['row']->status == 1)
-                                        <input id="status" type="radio" class="form-check-input" name="status" value="1"
-                                            checked>Active
-                                        <input id="status" type="radio" class="form-check-input" name="status"
-                                            value="0">Inactive
-                                    @endif
-
-                                    @if ($data['row']->status == 0)
-                                        <input id="status" type="radio" class="form-check-input" name="status"
-                                            value="1">Active
-                                        <input id="status" type="radio" class="form-check-input" name="status" value="0"
-                                            checked>Inactive
-                                    @endif
-
-                                    @error('status')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-
-
-                            <div class="row mb-3">
-                                <label for="image" class="col-md-4 col-form-label text-md-end">Image</label>
-
-                                <div class="col-md-6">
-                                    <input id="image_file" type="file"
-                                        class="form-control @error('image_file') is-invalid @enderror" name="image_file"
-                                        value="{{ old('image_file') }}" autocomplete="image_file">
-
-                                    @error('image_file')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-
-                                    <div class="old">
-                                        <span>Old Image</span> <br>
-                                        <img src="{{ asset('uploads/posts/' . $data['row']->image) }}"
-                                            class="rounded">
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            <div class="row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-warning">
-                                        {{ __('Update') }}
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                        title="Collapse">
+                        <i class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip"
+                        title="Remove">
+                        <i class="fas fa-times"></i></button>
                 </div>
             </div>
+            <div class="card-body">
+                {!! Form::model($data['row'], ['route' => [$base_route . 'update', $data['row']->id]]) !!}
+                <!--$data['row'] purano value tanira xa route le udpate ma id pathairaxa-->
+
+                {!! Form::hidden('_method', 'PUT') !!}
+
+                @include($base_route . 'include.mainform')
+
+
+                {!! Form::submit('Update', ['class' => 'btn btn-primary']) !!}
+
+                {!! Form::close() !!}
+
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+                Footer
+            </div>
+            <!-- /.card-footer-->
         </div>
-    </div>
+        <!-- /.card -->
+
+    </section>
 @endsection
