@@ -19,11 +19,12 @@
             <!--Dashboard-->
             <li class="nav-item has-treeview">
                 <a href="{{ route('home') }}" class="nav-link">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                    <p>
-                        Dashboard
-                    </p>
-                </a>
+                    <a href="{{ route('home') }}" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
 
             </li>
 
@@ -70,20 +71,8 @@
 
             </li>
 
-            <!--Room Owner-->
-            <li class="nav-item has-treeview">
-                <a href="{{ route('backend.user.index') }}" class="nav-link">
-                    <i class="nav-icon fas fa-users"></i>
 
-                    <p>
-                        Users
-
-                    </p>
-                </a>
-
-            </li>
-
-            <!--Room Owner-->
+            <!-- My Information-->
             <li class="nav-item has-treeview">
                 <a href="{{ route('backend.category.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-list"></i>
@@ -96,6 +85,18 @@
 
             </li>
 
+            <!-- My Information-->
+            <li class="nav-item has-treeview">
+                <a href="{{ route('backend.user.show', auth()->user()->id) }}" class="nav-link">
+                    <i class="nav-icon fas fa-user-alt"></i>
+
+                    <p>
+                        My Information
+
+                    </p>
+                </a>
+
+            </li>
 
 
 

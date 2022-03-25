@@ -40,14 +40,13 @@
                     <div class="collapse navbar-toggleable-sm" id="tmNavbar">
                         <ul class="nav navbar-nav">
 
-
-                            {{-- <li class="nav-item">
+                            {{-- <li class="nav-item {{ request()->segment(1) === '' ? 'active' : '' }}">
                                 <a href="{{ route('/') }}" class="nav-link">Home</a>
                             </li> --}}
-                            @foreach ($categories as $category)
-                                <li class="nav-item {{ request()->segment(1) == $category->slug ? 'active' : '' }}">
-                                    <a href="{{ route('category', $category->slug) }}"
-                                        class="nav-link">{{ $category->title }}</a>
+                            @foreach ($menuItems as $slug => $title)
+                                <li class="nav-item {{ request()->segment(1) == $slug ? 'active' : '' }} ">
+                                    <a href="{{ route('category', $slug) }}"
+                                        class="nav-link">{{ $title }}</a>
                                 </li>
                             @endforeach
 

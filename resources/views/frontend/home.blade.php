@@ -71,7 +71,8 @@
                             <nav>
                                 <ul class="nav">
                                     @forelse($allCategories as $category)
-                                        <li><a href="#" class="tm-text-link">{{ $category->title }}</a>
+                                        <li><a href="{{ route('category', $category->slug) }}"
+                                                class="tm-text-link">{{ $category->title }}</a>
                                         </li>
                                     @empty
                                         <li>No categories added</a>

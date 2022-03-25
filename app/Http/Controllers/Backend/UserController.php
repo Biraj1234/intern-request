@@ -36,6 +36,19 @@ class UserController extends BackendBaseController
         return view($this->__loadDataToView($this->folder . 'index'), compact('data'));
     }
 
+
+    public function show($id)
+    {
+
+        $data['row'] = $this->model->find($id);
+        if (!$data['row']) {
+            request()->session()->flash('error', 'Record not found in ' . $this->panel);
+            return redirect()->route($this->base_route . 'index');
+        }
+        $this->title = 'View';
+        return view($this->__loadDataToView($this->folder . 'show'), $data);
+    }
+
     public function store(UserStoreRequest $request)
     {
         $file = $request->file('profile');
@@ -55,9 +68,10 @@ class UserController extends BackendBaseController
 
     public function edit($id)
     {
+        $this->title = 'Edit';
         $data['row'] = $this->model->find($id);
 
-        return view('backend.user.edit', compact('data'));
+        return view($this->__loadDataToView($this->folder . 'edit'), $data);
     }
 
 
@@ -85,7 +99,7 @@ class UserController extends BackendBaseController
         } else {
             $request->session()->flash('error', 'Error in updating User');
         }
-        return redirect()->route('user.index');
+        return redirect()->route($this->base_route . 'show', auth()->user()->id);
     }
 
 

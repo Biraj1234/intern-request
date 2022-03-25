@@ -62,18 +62,26 @@ class PostController extends BackendBaseController
     }
 
 
-    public function show(Post $post)
+    public function show($id)
     {
-        //
+
+        $data['row'] = $this->model->find($id);
+        if (!$data['row']) {
+            request()->session()->flash('error', 'Record not found in ' . $this->panel);
+            return redirect()->route($this->base_route . 'index');
+        }
+        $this->title = 'View';
+        return view($this->__loadDataToView($this->folder . 'show'), $data);
     }
 
 
     public function edit($id)
     {
         $this->title = 'Create';
+        $data['categories'] = Category::pluck('title', 'id');
         $data['row'] = $this->model->find($id);
 
-        return view($this->__loadDataToView($this->folder . 'edit'), compact('data'));
+        return view($this->__loadDataToView($this->folder . 'edit'), $data);
     }
 
 
@@ -101,7 +109,7 @@ class PostController extends BackendBaseController
         } else {
             $request->session()->flash('error', 'Error in updating post');
         }
-        return redirect()->route('post.index');
+        return redirect()->route($this->base_route . 'index');
     }
 
 

@@ -5,7 +5,7 @@
 
     {!! Form::select('category_id', $categories, null, ['class' => 'form-control', 'placeholder' => 'Select a category']) !!}
 </div>
-@error('title')
+@error('category_id')
     <p class="text text-danger">{{ $message }}</p>
 @enderror
 

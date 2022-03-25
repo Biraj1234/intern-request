@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\PostStoreRequest;
 use App\Http\Requests\PostUpdateRequest;
 use App\Models\Category;
@@ -27,6 +28,7 @@ class CategoryController extends BackendBaseController
 
     public function index()
     {
+        $this->title = 'List';
         $data['posts'] = $this->model->all();
         return view($this->__loadDataToView($this->folder . 'index'), compact('data'));
     }
@@ -38,11 +40,8 @@ class CategoryController extends BackendBaseController
         return view($this->__loadDataToView($this->folder . 'create'));
     }
 
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        // dd($request->all());
-
-
         $data['row'] = $this->model::create($request->all());
         if ($data['row']) {
             $request->session()->flash('success', 'Post successfully added');
@@ -67,7 +66,7 @@ class CategoryController extends BackendBaseController
     }
 
 
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
         // dd($request->status);
 

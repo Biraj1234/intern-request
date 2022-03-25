@@ -29,12 +29,16 @@ class PostStoreRequest extends FormRequest
             'position' => 'required|unique:posts',
             'status' => 'required',
             'image_file' => 'required',
-            'position' => 'required|unique:posts'
+            'position' => 'required|unique:posts',
+            'category_id' => 'required'
         ];
     }
     public function messages()
     {
 
-        return ['image_file.required' => "Please choose a picture."];
+        return [
+            'image_file.required' => "Please choose a picture.",
+            'category_id.required' => "Please select a category.",
+        ];
     }
 }

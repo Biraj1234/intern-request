@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="card-body">
-                {!! Form::model($data['row'], ['route' => [$base_route . 'update', $data['row']->id]]) !!}
+                {!! Form::model($row, ['route' => [$base_route . 'update', $row->id]]) !!}
                 <!--$data['row'] purano value tanira xa route le udpate ma id pathairaxa-->
 
                 {!! Form::hidden('_method', 'PUT') !!}
