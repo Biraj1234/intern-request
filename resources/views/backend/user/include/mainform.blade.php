@@ -39,9 +39,7 @@
 @enderror
 
 
-@error('cpassword')
-    <p class="text text-danger">Password didn't match</p>
-@enderror
+
 
 
 

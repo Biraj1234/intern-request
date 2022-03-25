@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends BackendBaseController
@@ -15,7 +18,9 @@ class DashboardController extends BackendBaseController
 
     public function index()
     {
-
-        return view($this->__loadDataToView($this->folder . 'index'));
+        $data['posts'] = Post::count();
+        $data['categories'] = Category::count();
+        $data['users'] = User::count();
+        return view($this->__loadDataToView($this->folder . 'index'), $data);
     }
 }

@@ -23,7 +23,7 @@ class HomeController extends Controller
     public function specific($slug)
     {
         $data['category'] = Category::where('slug', $slug)->firstOrFail();
-        $data['row'] = $data['category']->posts;
+        $data['row'] = $data['category']->posts->where('status', 1);
         $data['categories'] = Category::orderBy('position', 'ASC')->paginate(3);
 
         $data['allCategories'] = Category::all();

@@ -16,48 +16,20 @@
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
 
+
+
+
             <!--Dashboard-->
             <li class="nav-item has-treeview">
                 <a href="{{ route('home') }}" class="nav-link">
-                    <a href="{{ route('home') }}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                        Dashboard
+                    </p>
+                </a>
 
             </li>
 
-            <!--Basic Setup-->
-            {{-- <li class="nav-item has-treeview">
-                <a href="" class="nav-link">
-                    <i class="nav-icon fas fa-tools"></i>
-                    <p>
-                        Basic Setup
-                        <i class="right fas fa-angle-left"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-                    <!--Facility-->
-                    <li class="nav-item">
-                        <a href="" class="nav-link">
-                            <i class="nav-icon fas fa-tint"></i>
-                            <p>Facility</p>
-                        </a>
-                    </li>
-
-                    <!--Room Type-->
-                    <li class="nav-item">
-                        <a href="" class="nav-link">
-                            <i class="nav-icon fas fa-users"></i>
-                            <p>Room Type</p>
-                        </a>
-                    </li>
-
-
-
-                </ul>
-            </li> --}}
 
 
             <!--Rooms-->

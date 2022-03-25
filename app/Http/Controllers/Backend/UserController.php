@@ -7,6 +7,7 @@ use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
@@ -51,6 +52,7 @@ class UserController extends BackendBaseController
 
     public function store(UserStoreRequest $request)
     {
+
         $file = $request->file('profile');
         $fileName = time() . '.' . $file->getClientOriginalName();
         $file->move(public_path('uploads/users'), $fileName);
@@ -77,6 +79,7 @@ class UserController extends BackendBaseController
 
     public function update(UserUpdateRequest $request, $id)
     {
+        // dd($request->all());
         $data['row'] = $this->model->find($id);
 
 
