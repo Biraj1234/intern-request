@@ -119,6 +119,6 @@ class PostController extends BackendBaseController
         } else {
             request()->session()->flash('error', 'Error in deleting post');
         }
-        return view($this->__loadDataToView($this->folder . 'index'));
+        return redirect()->route($this->base_route . 'index');
     }
 }

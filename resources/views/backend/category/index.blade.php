@@ -34,6 +34,7 @@
                             <tr>
                                 <th>S.No</th>
                                 <th>Title</th>
+                                <th>Slug</th>
                                 <th>Status</th>
                                 <th>Action</th>
 
@@ -46,6 +47,7 @@
 
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $data->title }}</td>
+                                    <td>{{ $data->slug }}</td>
 
                                     <td>
                                         @if ($data->status == 1)

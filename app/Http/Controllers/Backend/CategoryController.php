@@ -63,11 +63,11 @@ class CategoryController extends BackendBaseController
     {
         $data['row'] = $this->model->find($id);
 
-        return view('backend.post.edit', compact('data'));
+        return view($this->__loadDataToView($this->folder . 'edit'), compact('data'));
     }
 
 
-    public function update(PostUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
         // dd($request->status);
 
@@ -91,7 +91,7 @@ class CategoryController extends BackendBaseController
         } else {
             $request->session()->flash('error', 'Error in updating post');
         }
-        return redirect()->route('post.index');
+        return redirect()->route($this->base_route . 'index');
     }
 
 

@@ -28,7 +28,7 @@
             </li>
 
             <!--Basic Setup-->
-            <li class="nav-item has-treeview">
+            {{-- <li class="nav-item has-treeview">
                 <a href="" class="nav-link">
                     <i class="nav-icon fas fa-tools"></i>
                     <p>
@@ -56,7 +56,7 @@
 
 
                 </ul>
-            </li>
+            </li> --}}
 
 
             <!--Rooms-->

@@ -9,7 +9,10 @@
     </div>
     <div class="row">
 
-        @foreach ($row as $post)
+
+        {{-- {{ $category->posts }} --}}
+
+        @forelse ($row as $post)
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
 
                 <div class="tm-content-box">
@@ -24,7 +27,10 @@
                 </div>
 
             </div>
-        @endforeach
+
+        @empty
+            <div>No Post Available</div>
+        @endforelse
 
 
     </div> <!-- row -->

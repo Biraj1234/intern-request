@@ -8,6 +8,17 @@
     <p class="text text-danger">{{ $message }}</p>
 @enderror
 
+<!--Slug-->
+<div class="form-group">
+    {!! Form::label('slug', 'Slug', ['class' => 'control-label']) !!}
+
+    {!! Form::text('slug', null, ['class' => 'form-control']) !!}
+</div>
+@error('slug')
+    <p class="text text-danger">{{ $message }}</p>
+@enderror
+
+
 <!--Position-->
 <div class="form-group">
     {!! Form::label('position', 'Position', ['class' => 'control-label']) !!}

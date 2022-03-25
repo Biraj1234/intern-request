@@ -20,8 +20,10 @@
 
 <body>
 
+
     <div class="tm-header">
         <div class="container-fluid">
+
             <div class="tm-header-inner">
                 <a href="{{ route('/') }}" class="navbar-brand tm-site-name">EKhabar</a>
 
@@ -37,12 +39,15 @@
 
                     <div class="collapse navbar-toggleable-sm" id="tmNavbar">
                         <ul class="nav navbar-nav">
-                            <li class="nav-item active">
-                                <a href="index.html" class="nav-link">Home</a>
-                            </li>
+
+
+                            {{-- <li class="nav-item">
+                                <a href="{{ route('/') }}" class="nav-link">Home</a>
+                            </li> --}}
                             @foreach ($categories as $category)
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">{{ $category->title }}</a>
+                                <li class="nav-item {{ request()->segment(1) == $category->slug ? 'active' : '' }}">
+                                    <a href="{{ route('category', $category->slug) }}"
+                                        class="nav-link">{{ $category->title }}</a>
                                 </li>
                             @endforeach
 
